@@ -1,5 +1,5 @@
 import React from 'react'
-
+import DeleteArticle from './DeleteArticle'
 export default function Article({ article }) {
   return (
     <div
@@ -11,8 +11,15 @@ export default function Article({ article }) {
       <div className='row-span-3'>
         <img src={article.imageUrl} alt='' style={{ width: '10rem' }} />
       </div>
-      <div>
-        <p className='text-xl'>{article.title}</p>
+      <div className='col-span-10 '>
+        <div className='flex justify-between'>
+          <p className='text-xl'>{article.title}</p>
+          <DeleteArticle
+            id={article.id}
+            imageUrl={article.imageUrl}
+            className='text-end'
+          />
+        </div>
         <p>{article.createdAt.toDate().toDateString()}</p>
       </div>
       <div className='row-span-2 col-span-10'>

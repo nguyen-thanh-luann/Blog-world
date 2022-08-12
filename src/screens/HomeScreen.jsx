@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { ToastContainer } from 'react-toastify'
+import { Helmet } from 'react-helmet-async'
 
 import { db } from '../firebaseConfig'
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
@@ -27,7 +29,11 @@ export default function HomeScreen() {
   return (
     <div>
       <Header />
-      <div className='container px-20 py-5'>
+      <ToastContainer />
+      <Helmet>
+        <title>Blog World</title>
+      </Helmet>
+      <div className='container px-20 py-5 mt-20'>
         <div className='grid grid-cols-3 '>
           <div className='col-span-2 px-40'>
             {isLoading ? (

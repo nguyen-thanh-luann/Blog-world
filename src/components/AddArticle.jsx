@@ -73,7 +73,8 @@ export default function AddArticle() {
     <div
       className='border-solid border-2 border-sky-500
     rounded-lg
-    p-4'
+    p-4 
+    '
     >
       <h2 className='text-2xl'>Add new article</h2>
 
