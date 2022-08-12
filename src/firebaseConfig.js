@@ -15,6 +15,7 @@ const firebaseConfig = {
 
   appId: '1:607249845207:web:99e0397bcfa5b2ab7b9992',
 }
+
 const app = initializeApp(firebaseConfig)
 
 export const storage = getStorage(app)

@@ -15,7 +15,6 @@ export default function HomeScreen() {
     const articleRef = collection(db, 'Articles')
     const q = query(articleRef, orderBy('createdAt', 'desc'))
     onSnapshot(q, (snapshot) => {
-      console.log(snapshot.docs)
       const articles = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -28,9 +27,9 @@ export default function HomeScreen() {
   return (
     <div>
       <Header />
-      <div className="container px-20 py-5">
-        <div className="grid grid-cols-3 ">
-          <div className="col-span-2 px-40">
+      <div className='container px-20 py-5'>
+        <div className='grid grid-cols-3 '>
+          <div className='col-span-2 px-40'>
             {isLoading ? (
               <div>
                 <Loading />
