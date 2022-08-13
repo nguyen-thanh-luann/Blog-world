@@ -5,6 +5,7 @@ import { auth, db } from '../firebaseConfig'
 import { doc, arrayRemove, updateDoc, arrayUnion } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 export default function Article({ article }) {
   let navigate = useNavigate()
@@ -51,7 +52,9 @@ export default function Article({ article }) {
     p-2 mt-5 first:mt-0'
     >
       <div className='row-span-3'>
-        <img src={article.imageUrl} alt='' style={{ width: '10rem' }} />
+        <Link to={`/article/${article.id}`}>
+          <img src={article.imageUrl} alt='' style={{ width: '10rem' }} />
+        </Link>
         <p>{`Created by ${article.createdBy}`}</p>
       </div>
       <div className='col-span-10 '>
