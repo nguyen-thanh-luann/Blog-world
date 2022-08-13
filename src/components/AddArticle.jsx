@@ -3,8 +3,11 @@ import React, { useState } from 'react'
 import { db, storage } from '../firebaseConfig'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { toast } from 'react-toastify'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '../firebaseConfig'
 
 export default function AddArticle() {
+  const [user] = useAuthState(auth)
   const [progress, setProgress] = useState(0)
   const [formData, setFormData] = useState({
     title: '',
@@ -57,6 +60,10 @@ export default function AddArticle() {
             description: formData.description,
             imageUrl: url,
             createdAt: Timestamp.now().toDate(),
+            createdBy: user.displayName,
+            userId: user.uid,
+            likes: [],
+            comments: [],
           })
             .then(() => {
               toast('New Article post success!', { type: 'success' })

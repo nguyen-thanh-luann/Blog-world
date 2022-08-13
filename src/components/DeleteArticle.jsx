@@ -3,6 +3,7 @@ import { db, storage } from '../firebaseConfig'
 import { deleteDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import { deleteObject, ref } from 'firebase/storage'
+
 export default function DeleteArticle({ id, imageUrl }) {
   const handleDelete = async () => {
     if (window.confirm('Are you sure?')) {
@@ -24,7 +25,7 @@ export default function DeleteArticle({ id, imageUrl }) {
   return (
     <div>
       <button className='text-red-400' onClick={() => handleDelete()}>
-        Delete
+        <i className='fa-solid fa-trash'></i>
       </button>
     </div>
   )
