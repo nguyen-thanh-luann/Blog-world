@@ -6,12 +6,14 @@ import { doc, arrayRemove, updateDoc, arrayUnion } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import { FaRegCommentDots } from 'react-icons/fa'
 
 export default function Article({ article }) {
   let navigate = useNavigate()
   const [user] = useAuthState(auth)
   const likesRef = doc(db, 'Articles', article.id)
-
+  console.log(article)
   const handleLike = () => {
     if (!user) {
       if (window.confirm('Login to like')) {
@@ -46,50 +48,59 @@ export default function Article({ article }) {
 
   return (
     <div
-      className='grid grid-rows-3 grid-flow-col 
-    border-solid border-4 border-sky-500
-    rounded-lg
-    p-2 mt-5 first:mt-0'
+      className='grid grid-cols-6
+    border-solid border-2 border-gray-300
+
+     mt-5 first:mt-0'
     >
-      <div className='row-span-3'>
+      <div className='col-span-6 h-96'>
         <Link to={`/article/${article.id}`}>
-          <img src={article.imageUrl} alt='' style={{ width: '10rem' }} />
+          <img
+            src={article.imageUrl}
+            alt=''
+            className='h-full w-full mx-auto'
+          />
         </Link>
-        <p>{`Created by ${article.createdBy}`}</p>
       </div>
-      <div className='col-span-10 '>
-        <div className='flex justify-between'>
-          <p className='text-xl'>{article.title}</p>
-          {user && user.uid === article.userId && (
-            <DeleteArticle
-              id={article.id}
-              imageUrl={article.imageUrl}
-              className='text-end'
-            />
-          )}
-        </div>
-        <p>{article.createdAt.toDate().toDateString()}</p>
+      <div className='col-span-6 px-10 py-3'>
+        <h2 className='text-2xl'>{article.title}</h2>
+        <p>{article.description}</p>
       </div>
-      <div className='row-span-2 col-span-10 flex flex-col justify-between'>
-        <p className=''>{article.description}</p>
-        <p className='text-end'>
+      <div
+        className='col-span-6 px-10 py-3 
+      border-t-2 border-dotted border-gray-200
+      flex justify-between'
+      >
+        <div>
           {article.likes.length === 0 ? (
             <>
-              <i
-                className='fa-solid fa-heart text-black hover:cursor-pointer'
+              <AiOutlineHeart
+                className='text-red-500 text-lg hover:cursor-pointer'
                 onClick={() => handleLike()}
-              ></i>
+              />
             </>
           ) : (
-            <>
-              <i
-                className='fa-solid fa-heart text-red-500 hover:cursor-pointer'
+            <div className='flex align-middle'>
+              <AiFillHeart
+                className='text-red-500 text-lg hover:cursor-pointer'
                 onClick={() => handleLike()}
-              ></i>
-              <span className='p-1'>{article.likes.length}</span>
-            </>
+              />
+              <span className='ml-1 text-sm'>{article.likes.length}</span>
+            </div>
           )}
-        </p>
+        </div>
+        <div>
+          {article.comments.length === 0 ? (
+            <>
+              <FaRegCommentDots />
+            </>
+          ) : (
+            <div className='flex align-middle'>
+              <FaRegCommentDots />
+              <span className='ml-1 text-sm'>{`${article.comments.length} comments`}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

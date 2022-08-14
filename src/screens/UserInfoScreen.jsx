@@ -6,6 +6,7 @@ import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
 import Header from '../components/Header'
+import AddArticle from '../components/AddArticle'
 
 export default function UserInfoScreen() {
   const [user] = useAuthState(auth)
@@ -29,6 +30,7 @@ export default function UserInfoScreen() {
         >
           Logout
         </button>
+        <AddArticle />
       </div>
     </div>
   )

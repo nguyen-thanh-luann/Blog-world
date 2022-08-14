@@ -12,6 +12,8 @@ import Header from '../components/Header'
 import Article from '../components/Article'
 import AddArticle from '../components/AddArticle'
 import { Link } from 'react-router-dom'
+import AddArticleButton from '../components/AddArticleButton'
+import Footer from '../components/Footer'
 
 export default function HomeScreen() {
   const [user] = useAuthState(auth)
@@ -38,9 +40,12 @@ export default function HomeScreen() {
       <Helmet>
         <title>Blog World</title>
       </Helmet>
-      <div className='container px-20 py-5 mt-20'>
-        <div className='grid grid-cols-3 '>
-          <div className='col-span-2 px-40'>
+      <div className=''>
+        <div>
+          <img src={require('../assets/image/banner1.jpg')} alt='' />
+        </div>
+        <div className='container w-2/4 py-5 mx-auto'>
+          <div className=''>
             {isLoading ? (
               <div>
                 <Loading />
@@ -56,28 +61,10 @@ export default function HomeScreen() {
               ))
             )}
           </div>
-          <div>
-            {user ? (
-              <>
-                <AddArticle />
-              </>
-            ) : (
-              <div className='border-2 border-sky-400 p-2 rounded-md'>
-                <Link to='/login' className='text-sky-600 font-bold block'>
-                  Login to create article
-                </Link>
-                <p className='inline-block'>Don't have an account? </p>
-                <Link
-                  to='/register'
-                  className='text-sky-600 font-bold inline-block pl-1'
-                >
-                  Singup
-                </Link>
-              </div>
-            )}
-          </div>
         </div>
       </div>
+      <AddArticleButton />
+      <Footer />
     </div>
   )
 }
