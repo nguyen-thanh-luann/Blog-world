@@ -6,7 +6,7 @@ import Register from './components/Register'
 import UserInfoScreen from './screens/UserInfoScreen'
 import Login from './components/Login'
 import ArticleDetail from './screens/ArticleDetail'
-import Footer from './components/Footer'
+import PostArticleScreen from './screens/PostArticleScreen'
 function App() {
   return (
     <HelmetProvider>
@@ -15,7 +15,7 @@ function App() {
           <Route path='/' element={<HomeScreen />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/footer' element={<Footer />} />
+          <Route path='/post' element={<PostArticleScreen />} />
           <Route path='/userInfo' element={<UserInfoScreen />} />
           <Route path='/article/:id' element={<ArticleDetail />} />
         </Routes>

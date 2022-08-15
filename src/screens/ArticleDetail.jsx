@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom'
 import Header from '../components/Header'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { uuidv4 } from '@firebase/util'
-
+import Footer from '../components/Footer'
 export default function ArticleDetail() {
   const { id } = useParams()
   const [article, setArticle] = useState()
@@ -63,33 +63,57 @@ export default function ArticleDetail() {
       <Header />
       {article && (
         <div className='mt-24 p-4'>
-          <div className='grid grid-rows-3 grid-flow-col'>
+          <div className=''>
             <Helmet>
               <title>{article.title}</title>
             </Helmet>
-            <div className='row-span-3'>
-              <img src={article.imageUrl} alt='' style={{ width: '10rem' }} />
+            <div className='h-96 w-full flex align-middle justify-center'>
+              <img src={article.imageUrl} alt='' className='h-full' />
             </div>
-            <div className='col-span-10'>
-              <p>{article.title}</p>
+            <div className='p-2'>
+              <p className='text-3xl'>{article.title}</p>
             </div>
-            <div className='row-span-2 col-span-10'>
+            <div className='p-2'>
               <p>{article.description}</p>
             </div>
           </div>
-          <div className='pt-2'>
+          <div className='py-6 px-4 border'>
             <h2 className='text-sky-500'>Comments</h2>
-            <div className='grid grid-flow-col'>
+            <div className=''>
+              <div>
+                {currentUser && (
+                  <div className='text-center'>
+                    <input
+                      type='text'
+                      className='border-collapse border-2 text-black border-sky-500 rounded-md
+                      w-1/3 p-1'
+                      placeholder='Write comment'
+                      value={comment}
+                      onChange={(e) => {
+                        setComment(e.target.value)
+                      }}
+                      onKeyUp={(e) => {
+                        handleChangeComment(e)
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
               <div>
                 {comments.length === 0 ? (
-                  <div>
+                  <div className='text-center'>
                     <h3>No Comment</h3>
                   </div>
                 ) : (
                   <div>
                     {comments.map((cmt) => (
-                      <div key={cmt.commentId}>
-                        <p>
+                      <div
+                        key={cmt.commentId}
+                        className='border border-sky-300 rounded-md 
+                        px-3 py-1 w-96 mt-4 first:mt-2
+                        shadow-lg'
+                      >
+                        <p className='flex justify-between'>
                           {cmt.userName}{' '}
                           {currentUser && cmt.user === currentUser.uid && (
                             <span
@@ -108,28 +132,11 @@ export default function ArticleDetail() {
                   </div>
                 )}
               </div>
-              <div>
-                {currentUser && (
-                  <div>
-                    <input
-                      type='text'
-                      className='border-collapse border-2 text-black border-sky-500 rounded-md'
-                      placeholder='Comment here...'
-                      value={comment}
-                      onChange={(e) => {
-                        setComment(e.target.value)
-                      }}
-                      onKeyUp={(e) => {
-                        handleChangeComment(e)
-                      }}
-                    />
-                  </div>
-                )}
-              </div>
             </div>
           </div>
         </div>
       )}
+      <Footer />
     </div>
   )
 }

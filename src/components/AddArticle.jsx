@@ -5,8 +5,11 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { toast } from 'react-toastify'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../firebaseConfig'
+import { FaTimes } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 export default function AddArticle() {
+  let navigate = useNavigate()
   const [user] = useAuthState(auth)
   const [progress, setProgress] = useState(0)
   const [formData, setFormData] = useState({
@@ -79,11 +82,21 @@ export default function AddArticle() {
   return (
     <div
       className='border-solid border-2 border-sky-500
+      shadow-2xl shadow-sky-700
     rounded-lg
+    bg-white
     p-4 
     '
     >
-      <h2 className='text-2xl'>Add new article</h2>
+      <div className='flex items-center justify-between'>
+        <h2 className='text-2xl'>Add new article</h2>
+        <FaTimes
+          className='text-xl text-red-500 hover:cursor-pointer'
+          onClick={() => {
+            navigate('/')
+          }}
+        />
+      </div>
 
       <div className='mt-2'>
         <label htmlFor='title'>Title</label>
