@@ -99,7 +99,7 @@ export default function ArticleDetail() {
                   </div>
                 )}
               </div>
-              <div>
+              <div className='flex items-center justify-center mt-4'>
                 {comments.length === 0 ? (
                   <div className='text-center'>
                     <h3>No Comment</h3>
@@ -111,7 +111,8 @@ export default function ArticleDetail() {
                         key={cmt.commentId}
                         className='border border-sky-300 rounded-md 
                         px-3 py-1 w-96 mt-4 first:mt-2
-                        shadow-lg'
+                        shadow-lg
+                        '
                       >
                         <p className='flex justify-between'>
                           {cmt.userName}{' '}
