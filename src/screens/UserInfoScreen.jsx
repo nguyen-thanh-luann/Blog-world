@@ -11,8 +11,6 @@ import Loading from '../components/Loading'
 import Article from '../components/Article'
 
 export default function UserInfoScreen() {
-  const articleRef = collection(db, 'Articles')
-  const q = query(articleRef, orderBy('createdAt', 'desc'))
   const [articles, setArticles] = useState([])
   const [user] = useAuthState(auth)
   const [isLoading, setIsLoading] = useState(true)
@@ -31,6 +29,14 @@ export default function UserInfoScreen() {
     })
   }, [])
 
+  const handleLogout = () => {
+    if (window.confirm('Are you sure logout?')) {
+      signOut(auth)
+      navigate('/')
+    } else {
+      return
+    }
+  }
   return (
     <div>
       <Header />
@@ -43,8 +49,7 @@ export default function UserInfoScreen() {
         <button
           className='border-2 border-red-700 rounded-sm p-1 bg-red-400 text-white font-bold'
           onClick={() => {
-            signOut(auth)
-            navigate('/')
+            handleLogout()
           }}
         >
           Logout
