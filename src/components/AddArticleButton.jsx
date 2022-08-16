@@ -1,12 +1,19 @@
 import React from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '../firebaseConfig'
 
 export default function AddArticleButton() {
   let navigate = useNavigate()
+  const [user] = useAuthState(auth)
 
   const handleAdd = () => {
-    navigate('/post')
+    if (user) {
+      navigate('/post')
+    } else {
+      navigate('/login')
+    }
   }
   return (
     <>
@@ -18,7 +25,6 @@ export default function AddArticleButton() {
     fixed bottom-10 right-10 '
         data-modal-toggle='large-modal'
         onClick={() => handleAdd()}
-        // style={{ borderRadius: '100px' }}
       >
         <i className='fa-solid fa-pen-to-square rounded-full'></i>
       </button>

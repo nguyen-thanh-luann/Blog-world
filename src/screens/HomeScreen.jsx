@@ -10,8 +10,6 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import Loading from '../components/Loading'
 import Header from '../components/Header'
 import Article from '../components/Article'
-import AddArticle from '../components/AddArticle'
-import { Link } from 'react-router-dom'
 import AddArticleButton from '../components/AddArticleButton'
 import Footer from '../components/Footer'
 

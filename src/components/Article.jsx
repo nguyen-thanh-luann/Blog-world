@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { FaRegCommentDots } from 'react-icons/fa'
+import { BsThreeDots } from 'react-icons/bs'
 
 export default function Article({ article }) {
   let navigate = useNavigate()
@@ -98,6 +99,12 @@ export default function Article({ article }) {
             <div className='flex align-middle'>
               <FaRegCommentDots />
               <span className='ml-1 text-sm'>{`${article.comments.length} comments`}</span>
+
+              {user && user.uid === article.userId && (
+                <div className='ml-2'>
+                  <DeleteArticle id={article.id} imageUrl={article.imageUrl} />
+                </div>
+              )}
             </div>
           )}
         </div>
