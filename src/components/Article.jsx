@@ -14,7 +14,6 @@ export default function Article({ article }) {
   let navigate = useNavigate()
   const [user] = useAuthState(auth)
   const likesRef = doc(db, 'Articles', article.id)
-  console.log(article)
   const handleLike = () => {
     if (!user) {
       if (window.confirm('Login to like')) {

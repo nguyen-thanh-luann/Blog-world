@@ -27,40 +27,22 @@ export default function Header() {
         </Link>
       </div>
       <div className='text-center'>
-        <Link
-          to='/'
-          className='text-lg text-gray-500 hover:text-2xl hover:text-black'
-        >
+        <Link to='/' className='text-lg text-gray-500  hover:text-black'>
           Home
         </Link>
-        <Link
-          to='/'
-          className='text-lg text-gray-500 hover:text-black hover:text-2xl ml-2'
-        >
+        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
           About
         </Link>
-        <Link
-          to='/'
-          className='text-lg text-gray-500 hover:text-black hover:text-2xl ml-2'
-        >
+        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
           Travel
         </Link>
-        <Link
-          to='/'
-          className='text-lg text-gray-500 hover:text-black hover:text-2xl ml-2'
-        >
+        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
           Fashion
         </Link>
-        <Link
-          to='/'
-          className='text-lg text-gray-500 hover:text-black hover:text-2xl ml-2'
-        >
+        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
           Relax
         </Link>
-        <Link
-          to='/'
-          className='text-lg text-gray-500 hover:text-black hover:text-2xl ml-2'
-        >
+        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
           Music
         </Link>
         <div className='inline-block ml-4 border-b-2 px-2'>

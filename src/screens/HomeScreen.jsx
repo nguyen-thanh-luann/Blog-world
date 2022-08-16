@@ -14,7 +14,6 @@ import AddArticleButton from '../components/AddArticleButton'
 import Footer from '../components/Footer'
 
 export default function HomeScreen() {
-  const [user] = useAuthState(auth)
   const [articles, setArticles] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 

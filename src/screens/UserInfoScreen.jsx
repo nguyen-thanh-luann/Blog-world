@@ -64,7 +64,7 @@ export default function UserInfoScreen() {
         ) : (
           articles &&
           articles.map((article) => (
-            <div className='mt-4 first:mt-1'>
+            <div key={article.id} className='mt-4 first:mt-1'>
               {article.userId === user.uid && (
                 <Article key={article.id} article={article} />
               )}

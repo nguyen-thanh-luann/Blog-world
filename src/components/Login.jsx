@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
+import { Link } from 'react-router-dom'
 import Header from './Header'
 
 export default function Login() {
@@ -40,7 +40,7 @@ export default function Login() {
         <div
           className='border-collapse border-sky-500 border-2 rounded-md
         shadow-xl shadow-sky-300
-        p-4
+        py-4 px-14
         w-1/3
        '
         >
@@ -51,22 +51,35 @@ export default function Login() {
                 type='email'
                 placeholder='Email'
                 className='border-collapse border-2 border-sky-300 rounded-md p-1 w-full'
-                {...register('email', { required: true })}
+                {...register('email', {
+                  required: true,
+                  onChange: () => {
+                    setErr('')
+                  },
+                })}
               />
               {errors.email && (
                 <p className='text-red-500'>Email is required.</p>
               )}
             </div>
 
-            <div className='mt-2'>
+            <div className='mt-4'>
               <input
                 type='password'
                 placeholder='Password'
                 className='border-collapse border-2 border-sky-300 rounded-md p-1 w-full'
-                {...register('password', { required: true })}
+                {...register('password', {
+                  required: true,
+                  onChange: () => {
+                    setErr('')
+                  },
+                })}
               />
               {errors.password && (
                 <p className='text-red-500'>Password is required.</p>
+              )}
+              {err !== '' && (
+                <p className='text-red-500'>Email or Password wrong</p>
               )}
             </div>
 
@@ -78,6 +91,13 @@ export default function Login() {
                 Login
               </button>
             </div>
+            <p className='text-center mt-4 text-gray-500'>
+              New to Blog World?
+              <Link to='/register' className='text-sky-500 font-bold'>
+                {' '}
+                Create an account.
+              </Link>
+            </p>
           </form>
         </div>
       </div>
