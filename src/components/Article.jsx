@@ -75,6 +75,24 @@ export default function Article({ article }) {
                 onClick={() => handleLike()}
               />
             </>
+          ) : user ? (
+            article.likes?.includes(user.uid) ? (
+              <div className='flex align-middle'>
+                <AiFillHeart
+                  className='text-red-500 text-lg hover:cursor-pointer'
+                  onClick={() => handleLike()}
+                />
+                <span className='ml-1 text-sm'>{article.likes.length}</span>
+              </div>
+            ) : (
+              <div className='flex align-middle'>
+                <AiOutlineHeart
+                  className='text-red-500 text-lg hover:cursor-pointer'
+                  onClick={() => handleLike()}
+                />
+                <span className='ml-1 text-sm'>{article.likes.length}</span>
+              </div>
+            )
           ) : (
             <div className='flex align-middle'>
               <AiFillHeart

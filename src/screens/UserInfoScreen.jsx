@@ -45,15 +45,39 @@ export default function UserInfoScreen() {
         <title>User info</title>
       </Helmet>
       <AddArticleButton />
+      {/* user Info */}
       <div
-        className='container px-20 pt-30
+        className='container px-20 py-4 mt-20
       border-b border-sky-300 shadow-lg bg-white
-      sticky top-20'
+      flex flex-col items-center
+      '
       >
-        <p>{user.displayName}</p>
-        <p>{user.email}</p>
+        <div className='w-1/5'>
+          <img
+            src={
+              'https://res.cloudinary.com/imthanhluan/image/upload/v1660192191/cld-sample.jpg'
+            }
+            alt=''
+            className='w-full'
+            style={{
+              borderTopRightRadius: '50%',
+              borderBottomLeftRadius: '50%',
+              // clipPath: 'circle(75px at 50% 50%)',
+            }}
+          />
+        </div>
+        <p className='text-2xl font-bold'>{user.displayName}</p>
+        <p className='text-lg'>{user.email}</p>
         <button
-          className='border-2 border-red-700 rounded-sm p-1 bg-red-400 text-white font-bold'
+          className='border-2 border-sky-500 rounded-sm my-2 px-4 w-1/5 bg-sky-300 hover:bg-sky-500 text-gray-900 hover:text-white hover:font-bold'
+          onClick={() => {
+            window.alert('Comming soon')
+          }}
+        >
+          Update
+        </button>
+        <button
+          className='border-2 border-red-700 rounded-sm px-4 w-1/5 bg-red-300 hover:bg-red-500 text-gray-900 hover:font-bold hover:text-white'
           onClick={() => {
             handleLogout()
           }}
