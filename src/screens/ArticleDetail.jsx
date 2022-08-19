@@ -71,9 +71,13 @@ export default function ArticleDetail() {
             </Helmet>
             <AddArticleButton />
             <div className='h-96 w-full flex align-middle justify-center'>
-              <img src={article.imageUrl} alt='' className='h-full' />
+              <img
+                src={article.imageUrl}
+                alt=''
+                className='h-full rounded-md shadow-2xl'
+              />
             </div>
-            <div className='p-2'>
+            <div className='p-2 mt-1'>
               <p className='text-3xl'>{article.title}</p>
             </div>
             <div className='p-2'>
@@ -88,8 +92,8 @@ export default function ArticleDetail() {
                   <div className='text-center'>
                     <input
                       type='text'
-                      className='border-collapse border-2 text-black border-sky-500 rounded-md
-                      w-1/3 p-1'
+                      className='border-collapse border-2 text-black border-sky-500 rounded-md p-1
+                      w-80 md:w-96 lg:w-96'
                       placeholder='Write comment'
                       value={comment}
                       onChange={(e) => {
@@ -113,7 +117,8 @@ export default function ArticleDetail() {
                       <div
                         key={cmt.commentId}
                         className='border border-sky-300 rounded-md 
-                        px-3 py-1 w-96 mt-4 first:mt-2
+                        px-3 py-1 mt-4 first:mt-2
+                        w-80 md:w-96 lg:w-96
                         shadow-lg
                         '
                       >

@@ -17,35 +17,23 @@ export default function Header() {
   return (
     <div
       className='text-black bg-white
-    px-9 py-4 
+    px-1 py-4 md:px-10 lg:px-10 xl:px-10
     fixed top-0 left-0 right-0 flex justify-between
     border-b-2'
     >
       <div>
-        <Link to='/' className='uppercase text-2xl'>
+        <Link to='/' className='uppercase text-xl md:text-2xl'>
           Blog World
         </Link>
       </div>
-      <div className='text-center'>
-        <Link to='/' className='text-lg text-gray-500  hover:text-black'>
+      <div className='flex'>
+        <Link to='/' className='text-gray-500 hover:text-black'>
           Home
         </Link>
-        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
-          About
+        <Link to='/' className='text-gray-500 hover:text-black ml-2'>
+          About me
         </Link>
-        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
-          Travel
-        </Link>
-        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
-          Fashion
-        </Link>
-        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
-          Relax
-        </Link>
-        <Link to='/' className='text-lg text-gray-500 hover:text-black  ml-2'>
-          Music
-        </Link>
-        <div className='inline-block ml-4 border-b-2 px-2'>
+        <div className='ml-4 border-b-2 px-2 mr-4 hidden md:block lg:block xl:block'>
           <input
             className='text-sm focus:outline-none'
             placeholder='Search...'
@@ -55,30 +43,28 @@ export default function Header() {
           />
           <i className='fa-solid fa-magnifying-glass text-sm text-gray-500'></i>
         </div>
-      </div>
-      <div>
-        {user ? (
+        {/* {user ? (
           <div>
-            <Link
-              to='/userInfo'
-              style={{ fontSize: '1.2rem', marginRight: '1rem' }}
-            >
+            <Link to='/userInfo' className='ml-2 text-lg'>
               <i className='fa-solid fa-user'></i>
             </Link>
           </div>
         ) : (
           <div>
+            <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
+          </div>
+        )} */}
+        {
+          <div>
             <Link
-              to='/login'
-              style={{ fontSize: '1.2rem', marginRight: '1rem' }}
+              to={`${user ? '/userInfo' : '/login'}`}
+              className='ml-2 text-lg'
             >
-              Login
-            </Link>
-            <Link to='/register' style={{ fontSize: '1.2rem' }}>
-              Register
+              <i className='fa-solid fa-user'></i>
             </Link>
           </div>
-        )}
+        }
       </div>
     </div>
   )

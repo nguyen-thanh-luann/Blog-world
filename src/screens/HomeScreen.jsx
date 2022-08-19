@@ -39,7 +39,7 @@ export default function HomeScreen() {
         <div>
           <img src={require('../assets/image/banner1.jpg')} alt='' />
         </div>
-        <div className='container w-2/4 py-5 mx-auto'>
+        <div className='container lg:w-2/4 w-full md:w-full py-5 px-2 mx-auto'>
           <div className=''>
             {isLoading ? (
               <div>
