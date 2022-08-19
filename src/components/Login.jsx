@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import Header from './Header'
+import Loading from './Loading'
 
 export default function Login() {
   let navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [err, setErr] = useState('')
   const {
     register,
@@ -17,15 +19,19 @@ export default function Login() {
   } = useForm()
 
   const onSubmit = async (data) => {
+    setIsLoading(true)
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password)
+      setIsLoading(false)
       navigate('/')
       toast.success('login success!!!')
     } catch (error) {
+      setIsLoading(false)
       console.log(`error: ${error}`)
       setErr(error)
     }
   }
+
   return (
     <>
       <Header />
@@ -84,6 +90,11 @@ export default function Login() {
             </div>
 
             <div className='text-center'>
+              {isLoading && (
+                <div className='py-2'>
+                  <Loading />
+                </div>
+              )}
               <button
                 className='border-collapse border-2 border-sky-300 rounded-md p-1 bg-sky-400 hover:bg-sky-200 font-bold mt-2 w-1/2'
                 type='submit'

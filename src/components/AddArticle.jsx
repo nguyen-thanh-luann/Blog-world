@@ -7,9 +7,11 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../firebaseConfig'
 import { FaTimes } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
 
 export default function AddArticle() {
   let navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const [user] = useAuthState(auth)
   const [progress, setProgress] = useState(0)
   const [formData, setFormData] = useState({
@@ -32,6 +34,8 @@ export default function AddArticle() {
       alert('Please fill all the fields')
       return
     }
+
+    setIsLoading(true)
 
     const storageRef = ref(
       storage,
@@ -78,6 +82,8 @@ export default function AddArticle() {
         })
       }
     )
+    navigate('/')
+    setIsLoading(false)
   }
   return (
     <div
@@ -150,6 +156,12 @@ export default function AddArticle() {
       )}
 
       <div className='w-full text-center'>
+        {isLoading && (
+          <div className='pt-2'>
+            <Loading />
+          </div>
+        )}
+
         <button
           className='bg-sky-500 py-2 mt-2 w-52 m-auto 
         rounded-md text-white font-bold text-xl

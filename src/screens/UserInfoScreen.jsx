@@ -9,6 +9,7 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
 import Article from '../components/Article'
+import AddArticleButton from '../components/AddArticleButton'
 
 export default function UserInfoScreen() {
   const [articles, setArticles] = useState([])
@@ -43,7 +44,12 @@ export default function UserInfoScreen() {
       <Helmet>
         <title>User info</title>
       </Helmet>
-      <div className='container px-20 py-5 mt-20'>
+      <AddArticleButton />
+      <div
+        className='container px-20 pt-30
+      border-b border-sky-300 shadow-lg bg-white
+      sticky top-20'
+      >
         <p>{user.displayName}</p>
         <p>{user.email}</p>
         <button

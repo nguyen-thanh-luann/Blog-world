@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { Helmet } from 'react-helmet-async'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '../firebaseConfig'
-
 import { db } from '../firebaseConfig'
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 
@@ -37,6 +34,7 @@ export default function HomeScreen() {
       <Helmet>
         <title>Blog World</title>
       </Helmet>
+      <AddArticleButton />
       <div className=''>
         <div>
           <img src={require('../assets/image/banner1.jpg')} alt='' />
@@ -60,7 +58,7 @@ export default function HomeScreen() {
           </div>
         </div>
       </div>
-      <AddArticleButton />
+
       <Footer />
     </div>
   )

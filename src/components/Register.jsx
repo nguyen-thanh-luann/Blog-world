@@ -5,9 +5,11 @@ import { auth } from '../firebaseConfig'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Header from './Header'
+import Loading from './Loading'
 
 export default function Register() {
   let navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState()
   const [err, setErr] = useState('')
   const {
     register,
@@ -16,12 +18,15 @@ export default function Register() {
   } = useForm()
 
   const onSubmit = async (data) => {
+    setIsLoading(true)
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password)
       updateProfile(auth.currentUser, { displayName: data.name })
+      setIsLoading(false)
       navigate('/')
     } catch (error) {
       console.log(error)
+      setIsLoading(false)
       setErr(error)
     }
   }
@@ -90,6 +95,11 @@ export default function Register() {
 
             {err !== '' && (
               <p className='text-red-500'>This email already exists</p>
+            )}
+            {isLoading && (
+              <div className='text-center pt-2'>
+                <Loading />
+              </div>
             )}
 
             <button

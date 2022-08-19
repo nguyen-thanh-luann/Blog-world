@@ -26,9 +26,7 @@ export default function Article({ article }) {
         updateDoc(likesRef, {
           likes: arrayRemove(user.uid),
         })
-          .then(() => {
-            toast.success('unliked')
-          })
+          .then(() => {})
           .catch((err) => {
             console.log(err)
           })
@@ -36,9 +34,7 @@ export default function Article({ article }) {
         updateDoc(likesRef, {
           likes: arrayUnion(user.uid),
         })
-          .then(() => {
-            toast.success('liked')
-          })
+          .then(() => {})
           .catch((err) => {
             console.log(err)
           })
