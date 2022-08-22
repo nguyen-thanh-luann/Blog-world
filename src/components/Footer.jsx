@@ -1,4 +1,5 @@
 import React from 'react'
+import { AiOutlineUp } from 'react-icons/ai'
 
 export default function Footer() {
   return (
@@ -47,6 +48,15 @@ export default function Footer() {
         </a>
       </div>
       <h6 className='mt-3 text-gray-500'>Made by Nguyen Thanh Luan</h6>
+      <button
+        className='border-4 border-gray-400 hover:bg-gray-100 hover:border-gray-200
+        p-1 mt-2 text-black font-bold bg-white'
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
+      >
+        <AiOutlineUp />
+      </button>
     </div>
   )
 }

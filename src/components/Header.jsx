@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '../firebaseConfig'
 import { toast } from 'react-toastify'
+import { BiBell } from 'react-icons/bi'
+import AddArticleButton from './AddArticleButton'
+
 export default function Header() {
   const [user] = useAuthState(auth)
 
@@ -26,45 +29,39 @@ export default function Header() {
           Blog World
         </Link>
       </div>
-      <div className='flex'>
-        <Link to='/' className='text-gray-500 hover:text-black'>
-          Home
-        </Link>
-        <Link to='/' className='text-gray-500 hover:text-black ml-2'>
-          About me
-        </Link>
-        <div className='ml-4 border-b-2 px-2 mr-4 hidden md:block lg:block xl:block'>
-          <input
-            className='text-sm focus:outline-none'
-            placeholder='Search...'
-            onKeyUp={(e) => {
-              searchHandle(e)
-            }}
-          />
-          <i className='fa-solid fa-magnifying-glass text-sm text-gray-500'></i>
-        </div>
-        {/* {user ? (
-          <div>
-            <Link to='/userInfo' className='ml-2 text-lg'>
-              <i className='fa-solid fa-user'></i>
+      <div className='flex items-center'>
+        {user ? (
+          <>
+            <AddArticleButton />
+            <div className='hover:bg-sky-200 ml-4 hover:cursor-pointer rounded-md p-2'>
+              <BiBell className='text-xl' />
+            </div>
+            <Link to='/userInfo' className='w-8 ml-4'>
+              <img
+                src='https://res.cloudinary.com/imthanhluan/image/upload/v1659500844/profileDefault_raklnm.png'
+                alt=''
+                className='w-full rounded-full border-sky-200 hover:border-2'
+              />
             </Link>
-          </div>
+          </>
         ) : (
-          <div>
-            <Link to='/login'>Login</Link>
-            <Link to='/register'>Register</Link>
-          </div>
-        )} */}
-        {
-          <div>
+          <>
             <Link
-              to={`${user ? '/userInfo' : '/login'}`}
-              className='ml-2 text-lg'
+              to='/login'
+              className='border px-4 py-2 rounded-md w-36 text-center bg-white border-sky-500 text-sky-500
+              hover:text-white hover:bg-sky-500'
             >
-              <i className='fa-solid fa-user'></i>
+              Login
             </Link>
-          </div>
-        }
+            <Link
+              to='/register'
+              className='border px-4 py-2 rounded-md w-36 text-center bg-white border-sky-500 text-sky-500
+              hover:text-white hover:bg-sky-500 ml-4'
+            >
+              Create Account
+            </Link>
+          </>
+        )}
       </div>
     </div>
   )

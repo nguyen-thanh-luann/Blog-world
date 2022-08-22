@@ -7,7 +7,6 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import Loading from '../components/Loading'
 import Header from '../components/Header'
 import Article from '../components/Article'
-import AddArticleButton from '../components/AddArticleButton'
 import Footer from '../components/Footer'
 
 export default function HomeScreen() {
@@ -34,10 +33,13 @@ export default function HomeScreen() {
       <Helmet>
         <title>Blog World</title>
       </Helmet>
-      <AddArticleButton />
       <div className=''>
         <div>
-          <img src={require('../assets/image/banner1.jpg')} alt='' />
+          <img
+            src={require('../assets/image/banner1.jpg')}
+            alt=''
+            className='h-56 md:h-full lg:h-full'
+          />
         </div>
         <div className='container lg:w-2/4 w-full md:w-full py-5 px-2 mx-auto'>
           <div className=''>

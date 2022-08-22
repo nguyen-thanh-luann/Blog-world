@@ -14,7 +14,6 @@ import Header from '../components/Header'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { uuidv4 } from '@firebase/util'
 import Footer from '../components/Footer'
-import AddArticleButton from '../components/AddArticleButton'
 
 export default function ArticleDetail() {
   const { id } = useParams()
@@ -69,7 +68,6 @@ export default function ArticleDetail() {
             <Helmet>
               <title>{article.title}</title>
             </Helmet>
-            <AddArticleButton />
             <div className='h-96 w-full flex align-middle justify-center'>
               <img
                 src={article.imageUrl}

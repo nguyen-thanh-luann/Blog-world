@@ -9,7 +9,6 @@ import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
 import Article from '../components/Article'
-import AddArticleButton from '../components/AddArticleButton'
 
 export default function UserInfoScreen() {
   const [articles, setArticles] = useState([])
@@ -46,7 +45,6 @@ export default function UserInfoScreen() {
           <Helmet>
             <title>User info</title>
           </Helmet>
-          <AddArticleButton />
           {/* user Info */}
           <div
             className='container 

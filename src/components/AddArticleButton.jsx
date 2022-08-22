@@ -17,19 +17,14 @@ export default function AddArticleButton() {
   return (
     <>
       <button
-        className='border-2 p-4 border-sky-500 
-    text-white font-bold text-sm 
-    bg-sky-400
-    hover:cursor-pointer hover:bg-sky-300
-    fixed bottom-10 right-10 '
+        className='border-2 py-2 px-4 rounded-md border-sky-500
+    text-sky-500 text-sm 
+      bg-white
+    hover:cursor-pointer hover:bg-sky-500 hover:text-white'
         data-modal-toggle='large-modal'
         onClick={() => handleAdd()}
-        style={{ borderRadius: '50%' }}
       >
-        <i
-          className='fa-solid fa-pen-to-square'
-          style={{ clipPath: 'circle(75px at 50% 50%)' }}
-        ></i>
+        Create post
       </button>
     </>
   )

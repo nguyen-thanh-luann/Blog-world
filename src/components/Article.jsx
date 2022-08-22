@@ -131,7 +131,7 @@ export default function Article({ article }) {
               <span className='ml-1 text-sm'>{`${article.comments.length} comments`}</span>
 
               {user && user.uid === article.userId && (
-                <div className='ml-2'>
+                <div className='ml-2 relative'>
                   {/* <DeleteArticle id={article.id} imageUrl={article.imageUrl} />
                   > */}
                   <BsThreeDots className='hover:cursor-pointer ml-2' />
