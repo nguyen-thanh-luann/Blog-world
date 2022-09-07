@@ -3,16 +3,8 @@ import AddArticle from '../components/AddArticle'
 
 export default function PostArticleScreen() {
   return (
-    <div
-      className='bg-gray-200'
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-      }}
-    >
-      <div style={{ width: '40%' }}>
+    <div className='p-4 h-screen'>
+      <div className='w-full md:w-1/2 lg:w-1/2 mx-auto my-12'>
         <AddArticle />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { addDoc, collection, Timestamp } from 'firebase/firestore'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { db, storage } from '../firebaseConfig'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { toast } from 'react-toastify'
@@ -14,6 +14,7 @@ export default function AddArticle() {
   const [isLoading, setIsLoading] = useState(false)
   const [user] = useAuthState(auth)
   const [progress, setProgress] = useState(0)
+  const [previewImg, setPreviewImg] = useState()
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -28,6 +29,17 @@ export default function AddArticle() {
   const handleImageChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] })
   }
+
+  const handlePreviewImgChange = (e) => {
+    setPreviewImg(URL.createObjectURL(e.target.files[0]))
+  }
+  useEffect(() => {
+    console.log(`previewImgUrl: ${previewImg}`)
+    return () => {
+      previewImg && URL.revokeObjectURL(previewImg)
+    }
+  }, [previewImg])
+
   const handleSubmit = () => {
     console.log(formData)
     if (!formData.title || !formData.description || !formData.image) {
@@ -91,13 +103,13 @@ export default function AddArticle() {
       shadow-2xl shadow-sky-700
     rounded-lg
     bg-white
-    p-4 
+    p-4
     '
     >
       <div className='flex items-center justify-between'>
         <h2 className='text-2xl'>Add new article</h2>
         <FaTimes
-          className='text-xl text-red-500 hover:cursor-pointer'
+          className='text-xl text-red-500 hover:cursor-pointer hover:scale-125 transition duration-200'
           onClick={() => {
             navigate('/')
           }}
@@ -113,7 +125,8 @@ export default function AddArticle() {
             type='text'
             value={formData.title}
             onChange={(e) => handleChange(e)}
-            className='border-solid border-2 border-sky-800 rounded-md w-full'
+            className='border-solid border-2 border-sky-800 rounded-md w-full p-2'
+            placeholder={`It's a beautiful day...`}
           />
         </div>
       </div>
@@ -124,7 +137,8 @@ export default function AddArticle() {
           <textarea
             id='description'
             name='description'
-            className='border-solid border-2 border-sky-800 rounded-md w-full'
+            className='border-solid border-2 border-sky-800 rounded-md w-full p-2'
+            placeholder='Write something...'
             rows={5}
             onChange={(e) => handleChange(e)}
             value={formData.description}
@@ -134,14 +148,31 @@ export default function AddArticle() {
 
       <div className='mt-2'>
         <label htmlFor='image'>Image</label>
-        <div>
+        <div className='text-center'>
+          {/* preview image */}
+          {previewImg && (
+            <div className='flex justify-center'>
+              <img className='w-1/2' alt='' src={previewImg} />
+            </div>
+          )}
           <input
             id='image'
             name='image'
             type='file'
-            onChange={(e) => handleImageChange(e)}
-            className='border-solid border-2 border-sky-800 rounded-md w-full'
+            onChange={(e) => {
+              handleImageChange(e)
+              handlePreviewImgChange(e)
+            }}
+            className='block invisible'
           />
+          <label
+            htmlFor='image'
+            className='hover:cursor-pointer hover:bg-sky-200 hover:text-sky-600
+            transition duration-200 ease-out hover:ease-in
+            p-2 border-2 border-sky-500 border-dotted rounded-md'
+          >
+            Choose Image
+          </label>
         </div>
       </div>
 
@@ -163,8 +194,9 @@ export default function AddArticle() {
         )}
 
         <button
-          className='bg-sky-500 py-2 mt-2 w-52 m-auto 
+          className='bg-sky-500 py-2 mt-4 w-52 m-auto 
         rounded-md text-white font-bold text-xl
+         transition duration-200 ease-out hover:ease-in
         hover:bg-sky-400
         active:bg-sky-600
         '
